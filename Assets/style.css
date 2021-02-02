@@ -17,11 +17,23 @@ p {
 
 form{
     justify-content: center;
+
 }
+
 button {
-    border: steelblue;
-    border-radius: 1%;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(53, 150, 206);
+    color: white;
+    border: none;
 }
+
+i {
+    position: relative;
+    right: 2px;
+}
+
+
 .card {
 
     padding-left: 10px;
@@ -30,7 +42,7 @@ button {
 }
 
 .five-day{
-    margin-left: 10px;
+    margin-left: 15px;
     padding: 0;
 }
 
