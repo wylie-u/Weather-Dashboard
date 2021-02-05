@@ -38,7 +38,6 @@ function getApi() {
         var temp = data.main.temp
         var humidity = data.main.humidity
         var wind = data.wind.speed
-        var uv = data.// find uv 
         
         //other codes go here
 
@@ -46,15 +45,12 @@ function getApi() {
         $("#temperature").text(temp)
         //how to convert kelvin to farenheit
         $("#humidity").text(humidity)
-        $("#wind-speed").text(wind)
+        $("#wind-speed").text(temp)
 
 
 
       });
       
-      // if you have to find another api for uv, can do another function for the uv id 
-    // do another fetch function for 5 day
-    
   }
   
 // GIVEN a weather dashboard with form inputs
