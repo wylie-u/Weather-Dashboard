@@ -47,6 +47,7 @@ $("#search-button").on("click", getApi)
 
 function getApi() {
 
+    
     for (var i = 0; i < localStorage.length; i++) {
 
         var city = localStorage.getItem(i);
@@ -54,7 +55,7 @@ function getApi() {
         value = $("#city-list").addClass("list-group-item");
     
         value.append("<li>" + city + "</li>");
-        console.log('test')
+       
     }
     
 
@@ -86,7 +87,7 @@ function getApi() {
 
         var humidity = data.main.humidity + "%"
         var wind = data.wind.speed + " MPH"
-        console.log(wind)
+        
         
         //other codes go here
         // need to add date to name
@@ -96,9 +97,9 @@ function getApi() {
         $("#wind-speed").text(wind)
 
         // for loop for 5 day 
-        var lat = data.coord.lat;
-      console.log(lat)
-    var lon = data.coord.lon;
+    //     var lat = data.coord.lat;
+    //   console.log(lat)
+    // var lon = data.coord.lon;
 
 
     var requestOptions = {
@@ -106,7 +107,7 @@ function getApi() {
         redirect: 'follow'
       };
       
-      fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=minutely,hourly,daily,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
+      fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));

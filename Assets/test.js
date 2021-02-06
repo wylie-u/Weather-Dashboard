@@ -7,46 +7,32 @@ const forecastWeather = document.getElementById("#forecast-weather");
 let apiKey = "1e9dda97d02056dc1ee084b9e12c91ed";
 
 
+// day format
 
-// $(document).ready(function() {
+var currentDate = moment().format('L');
+$("#current-date").text(currentDate);
+var date1 = moment().add(1, 'days').format('L');
+var date2 = moment().add(2, 'days').format('L');
+var date3 = moment().add(3, 'days').format('L');
+var date4 = moment().add(4, 'days').format('L');
+var date5 = moment().add(5, 'days').format('L');
 
-
-// when search button is selected, list item is created with that city 
-
-// for loop?? 
-
-
-    
-
-
-// weather icon
-// set attribute then src 
-// . weather .icon
-
-
-
-// city name, search button need ids 
-
-// searchbutton.on click me function
-// var searchbutton = 
-
-// display grids
-// $("#search-button").on("click", citySearch)
-
-// function citySearch(){
-//     console.log('test')
-//     currentForecast.style.display = "block";
-//     console.log('test')
-//     forecastWeather.style.display = "block";
-// }
+$("#forecase-date1").text(date1);
+$("#forecase-date2").text(date2);
+$("#forecase-date3").text(date3);
+$("#forecase-date4").text(date4);
+$("#forecase-date5").text(date5);
+console.log('test')
 
 
 $("#search-button").on("click", getApi)
 
-
-
 function getApi() {
 
+    // list elements for search bar
+    // not sure how to save to local storage
+
+    // could be a variable naming issue 
     for (var i = 0; i < localStorage.length; i++) {
 
         var city = localStorage.getItem(i);
@@ -54,12 +40,9 @@ function getApi() {
         value = $("#city-list").addClass("list-group-item");
     
         value.append("<li>" + city + "</li>");
-        console.log('test')
+        
     }
     
-
-
-    console.log("Searched button clicked")
     var searchField = $("input").attr('id');
     var value = $(this).siblings('#user-input').val();
     
@@ -81,24 +64,27 @@ function getApi() {
 
         var cityName = data.name 
         var temp = data.main.temp + " F°"
-        // var weatherimg = 
-        
-
         var humidity = data.main.humidity + "%"
         var wind = data.wind.speed + " MPH"
         console.log(wind)
+        var weatherimg = 'https://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
         
-        //other codes go here
-        // need to add date to name
+
+        // displaying current day information
         $("#current-city").text(cityName)
         $("#temperature").text(temp)
         $("#humidity").text(humidity)
         $("#wind-speed").text(wind)
+        $("current-img").attr('src', weatherimg);
+        
+        
 
-        // for loop for 5 day 
+
+       
+
+        
         var lat = data.coord.lat;
-      console.log(lat)
-    var lon = data.coord.lon;
+        var lon = data.coord.lon;
 
 
     var requestOptions = {
@@ -106,7 +92,7 @@ function getApi() {
         redirect: 'follow'
       };
       
-      fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=minutely,hourly,daily,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
+      fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=current,minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -119,41 +105,53 @@ function getApi() {
     // dont exclude daily 
 
       });
-     // latitude and longitude.. not working 
-     
-
-    // fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,daily,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed")
-    // console.log('test')
-
-    //   .then(function (response) {
-    //     response.json();
-    //     return
-    // })
-    //   .then(function (data) {
-    //     console.log(data)
-
-
-    //   });
-    // }    
+    // fiveDay();
     
-  
  }
 
+// function fiveDay(){
+
+//need to get daily numbers from oneday api and then input values for 5 day 
 
 
-    
-    
+
+
+
+// }
+
+
+
+
 
     
 
-    // for (var i = 0; i < data.length; i++) {
-    //     //Create a list element
-    //     var listItem = document.createElement('li');
+
+
+
+// display grids
+// $("#search-button").on("click", citySearch)
+
+// function citySearch(){
+//     console.log('test')
+//     currentForecast.style.display = "block";
+//     console.log('test')
+//     forecastWeather.style.display = "block";
+// }
+
+
+// GIVEN a weather dashboard with form inputs
+// WHEN I search for a city
+// THEN I am presented with current and future conditions for that city and that city is added to the search history
+// local storage get added 
+// WHEN I view current weather conditions for that city
+// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+// WHEN I view the UV index
+// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
+// WHEN I view future weather conditions for that city
+// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
+// WHEN I click on a city in the search history
+// THEN I am again presented with current and future conditions for that city
+
     
-    //     //Set the text of the list element to the JSON response's .html_url property
-    //     listItem.textContent = data[i].html_url;
-    
-    //     //Append the li element to the id associated with the ul element.
-    //     repoList.appendChild(listItem);
-    //   }
+
 
