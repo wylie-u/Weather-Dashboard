@@ -64,16 +64,11 @@ function getApi() {
           fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=current,minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
           // 
             .then(response => response.json())
-            .then(function (data) {
-                
-                var uv= data.daily.uvi 
-                console.log(uv)
-                
-                
-                
-
-
+            .then(result => {
+                // fiveDay(result)
+                uvIndex(result)
             })
+            .catch(error => console.log('error', error));
 
       
         
@@ -102,7 +97,10 @@ function userSearch(){
 
 function uvIndex(){
 
-    var uv = data.daily.uvi
+    var uvi = daily[0].uvi
+  
+     $("#uv-index").text(uvi)
+    console.log('test')
 
 }
 

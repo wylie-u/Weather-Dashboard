@@ -98,11 +98,13 @@ function getApi() {
       
       fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=current,minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
       // 
-        .then(response => response.json())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+      .then(function (data) {
+        
+        var uvi = daily[0].uvi
+  
+        $("#uv-index").text(uvi)
 
-        uv();
+        // uv();
     // call uv index function (result.coord.lat, result.coord.lon)
 
     // uv index (lat, lon)
@@ -110,6 +112,7 @@ function getApi() {
     // one call for daily forecasts
     // dont exclude daily 
 
+      })
       });
     // fiveDay();
     
@@ -119,11 +122,14 @@ function getApi() {
 
 //need to get daily numbers from oneday api and then input values for 5 day 
 
-// function uv (){
+function uvIndex (){
 
-//   var uvi = 
+  var uvi = daily[0].uvi
+  
+  $("#uv-index").text(uvi)
+  
 
-// }
+}
 
 
 
