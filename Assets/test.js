@@ -4,7 +4,7 @@ var userInput = document.getElementById("#user-input");
 const currentForecast = document.getElementById("#current-forecast");
 const forecastWeather = document.getElementById("#forecast-weather");
 
-let apiKey = "1e9dda97d02056dc1ee084b9e12c91ed";
+// let apiKey = "1e9dda97d02056dc1ee084b9e12c91ed";
 
 
 // day format
@@ -17,12 +17,13 @@ var date3 = moment().add(3, 'days').format('L');
 var date4 = moment().add(4, 'days').format('L');
 var date5 = moment().add(5, 'days').format('L');
 
-$("#forecase-date1").text(date1);
-$("#forecase-date2").text(date2);
-$("#forecase-date3").text(date3);
-$("#forecase-date4").text(date4);
-$("#forecase-date5").text(date5);
-console.log('test')
+//dates for 5 day forecast
+$("#forecast-date1").text(date1);
+$("#forecast-date2").text(date2);
+$("#forecast-date3").text(date3);
+$("#forecast-date4").text(date4);
+$("#forecast-date5").text(date5);
+
 
 
 $("#search-button").on("click", getApi)
@@ -32,10 +33,15 @@ function getApi() {
     // list elements for search bar
     // not sure how to save to local storage
 
-    // could be a variable naming issue 
+    // could be a variable naming issue
+    
+   
+    
+    
+
     for (var i = 0; i < localStorage.length; i++) {
 
-        var city = localStorage.getItem(i);
+        var city = localStorage.getItem("user-input");
     
         value = $("#city-list").addClass("list-group-item");
     
@@ -45,11 +51,9 @@ function getApi() {
     
     var searchField = $("input").attr('id');
     var value = $(this).siblings('#user-input').val();
-    
+
     console.log(value)
     localStorage.setItem(searchField, value)
-
-    
     // 5 day 3hr forecast
     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + value + "&units=imperial&appid=1e9dda97d02056dc1ee084b9e12c91ed";
     
@@ -93,10 +97,12 @@ function getApi() {
       };
       
       fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=current,minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
-        .then(response => response.text())
+      // 
+        .then(response => response.json())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 
+        uv();
     // call uv index function (result.coord.lat, result.coord.lon)
 
     // uv index (lat, lon)
@@ -113,7 +119,11 @@ function getApi() {
 
 //need to get daily numbers from oneday api and then input values for 5 day 
 
+// function uv (){
 
+//   var uvi = 
+
+// }
 
 
 
