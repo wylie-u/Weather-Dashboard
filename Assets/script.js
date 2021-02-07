@@ -1,74 +1,31 @@
-var cityList = document.getElementById("#city-list");
-var searchButton = document.getElementById("#search-button");
-var userInput = document.getElementById("#user-input");
-const currentForecast = document.getElementById("#current-forecast");
-const forecastWeather = document.getElementById("#forecast-weather");
+var currentDate = moment().format('L');
+$("#current-date").text(currentDate);
+var date1 = moment().add(1, 'days').format('L');
+var date2 = moment().add(2, 'days').format('L');
+var date3 = moment().add(3, 'days').format('L');
+var date4 = moment().add(4, 'days').format('L');
+var date5 = moment().add(5, 'days').format('L');
 
-let apiKey = "1e9dda97d02056dc1ee084b9e12c91ed";
-
-
-
-// $(document).ready(function() {
-
-
-// when search button is selected, list item is created with that city 
-
-// for loop?? 
+//dates for 5 day forecast
+$("#forecast-date1").text(date1);
+$("#forecast-date2").text(date2);
+$("#forecast-date3").text(date3);
+$("#forecast-date4").text(date4);
+$("#forecast-date5").text(date5);
 
 
-    
-
-
-// weather icon
-// set attribute then src 
-// . weather .icon
-
-
-
-// city name, search button need ids 
-
-// searchbutton.on click me function
-// var searchbutton = 
-
-// display grids
-// $("#search-button").on("click", citySearch)
-
-// function citySearch(){
-//     console.log('test')
-//     currentForecast.style.display = "block";
-//     console.log('test')
-//     forecastWeather.style.display = "block";
-// }
 
 
 $("#search-button").on("click", getApi)
 
-
-
 function getApi() {
 
-    
-    for (var i = 0; i < localStorage.length; i++) {
-
-        var city = localStorage.getItem(i);
-    
-        value = $("#city-list").addClass("list-group-item");
-    
-        value.append("<li>" + city + "</li>");
-       
-    }
-    
-
-
-    console.log("Searched button clicked")
     var searchField = $("input").attr('id');
     var value = $(this).siblings('#user-input').val();
-    
-    console.log(value)
-    localStorage.setItem(searchField, value)
 
     
-    // 5 day 3hr forecast
+    localStorage.setItem(searchField, value)
+
     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + value + "&units=imperial&appid=1e9dda97d02056dc1ee084b9e12c91ed";
     
     //console.log(requestUrl);
@@ -82,78 +39,83 @@ function getApi() {
 
         var cityName = data.name 
         var temp = data.main.temp + " F°"
-        // var weatherimg = 
-        
-
         var humidity = data.main.humidity + "%"
         var wind = data.wind.speed + " MPH"
+        console.log(wind)
+        var weatherimg = 'https://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
         
-        
-        //other codes go here
-        // need to add date to name
+
+        // displaying current day information
         $("#current-city").text(cityName)
         $("#temperature").text(temp)
         $("#humidity").text(humidity)
         $("#wind-speed").text(wind)
-
-        // for loop for 5 day 
-    //     var lat = data.coord.lat;
-    //   console.log(lat)
-    // var lon = data.coord.lon;
+        $("current-img").attr('src', weatherimg);
 
 
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
+        var lat = data.coord.lat;
+        var lon = data.coord.lon;
+
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+          
+          fetch(
+            'https://api.openweathermap.org/data/2.5/onecall?lat=' +
+              lat +
+              '&lon=' +
+              lon +
+              '&exclude=current,minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed',
+            requestOptions
+          )
+            .then((res) => res.json())
+            //
+            .then(function (data) {
+              console.log(data)
+              var uvi = data.daily[0].uvi;
+    
+              $('#uv-index').text(uvi);
+    
+              // uv();
+              // call uv index function (result.coord.lat, result.coord.lon)
+    
+              // uv index (lat, lon)
+    
+              // one call for daily forecasts
+              // dont exclude daily
+            });
+    
+
       
-      fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        
 
-    // call uv index function (result.coord.lat, result.coord.lon)
+    })
 
-    // uv index (lat, lon)
+    userSearch()
 
-    // one call for daily forecasts
-    // dont exclude daily 
-
-      });
-     // latitude and longitude.. not working 
-     
-
-    // fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,daily,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed")
-    // console.log('test')
-
-    //   .then(function (response) {
-    //     response.json();
-    //     return
-    // })
-    //   .then(function (data) {
-    //     console.log(data)
+};
 
 
-    //   });
-    // }    
+function userSearch(){
+
+    for (var i = 0; i < localStorage.length; i++) {
+
+        var city = localStorage.getItem("user-input");
     
-  
- }
+        value = $("#city-list").addClass("list-group-item");
+    
+        value.append("<li>" + city + "</li>");
+        
+    }
+    
+   
+}
 
 
 
-    
-    
 
-    
+// fiveDay(){
 
-    // for (var i = 0; i < data.length; i++) {
-    //     //Create a list element
-    //     var listItem = document.createElement('li');
-    
-    //     //Set the text of the list element to the JSON response's .html_url property
-    //     listItem.textContent = data[i].html_url;
-    
-    //     //Append the li element to the id associated with the ul element.
-    //     repoList.appendChild(listItem);
-    //   }
+
+// }

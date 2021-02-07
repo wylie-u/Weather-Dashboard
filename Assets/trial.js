@@ -61,14 +61,31 @@ function getApi() {
             redirect: 'follow'
           };
           
-          fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=current,minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
-          // 
-            .then(response => response.json())
-            .then(result => {
-                // fiveDay(result)
-                uvIndex(result)
-            })
-            .catch(error => console.log('error', error));
+          fetch(
+            'https://api.openweathermap.org/data/2.5/onecall?lat=' +
+              lat +
+              '&lon=' +
+              lon +
+              '&exclude=current,minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed',
+            requestOptions
+          )
+            .then((res) => res.json())
+            //
+            .then(function (data) {
+              console.log(data)
+              var uvi = data.daily[0].uvi;
+    
+              $('#uv-index').text(uvi);
+    
+              // uv();
+              // call uv index function (result.coord.lat, result.coord.lon)
+    
+              // uv index (lat, lon)
+    
+              // one call for daily forecasts
+              // dont exclude daily
+            });
+    
 
       
         
@@ -95,14 +112,7 @@ function userSearch(){
    
 }
 
-function uvIndex(){
 
-    var uvi = daily[0].uvi
-  
-     $("#uv-index").text(uvi)
-    console.log('test')
-
-}
 
 
 // fiveDay(){

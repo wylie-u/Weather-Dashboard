@@ -35,9 +35,6 @@ function getApi() {
 
     // could be a variable naming issue
     
-   
-    
-    
 
     for (var i = 0; i < localStorage.length; i++) {
 
@@ -96,25 +93,37 @@ function getApi() {
         redirect: 'follow'
       };
       
-      fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon="+ lon + "&exclude=current,minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed", requestOptions)
-      // 
-      .then(function (data) {
-        
-        var uvi = daily[0].uvi
-  
-        $("#uv-index").text(uvi)
+      fetch(
+        'https://api.openweathermap.org/data/2.5/onecall?lat=' +
+          lat +
+          '&lon=' +
+          lon +
+          '&exclude=current,minutely,hourly,alerts&appid=1e9dda97d02056dc1ee084b9e12c91ed',
+        requestOptions
+      )
+        .then((res) => res.json())
+        //
+        .then(function (data) {
+          console.log(data)
+          var uvi = data.daily[0].uvi;
 
-        // uv();
-    // call uv index function (result.coord.lat, result.coord.lon)
+          $('#uv-index').text(uvi);
 
-    // uv index (lat, lon)
+          // uv();
+          // call uv index function (result.coord.lat, result.coord.lon)
 
-    // one call for daily forecasts
-    // dont exclude daily 
+          // uv index (lat, lon)
 
-      })
+          // one call for daily forecasts
+          // dont exclude daily
+        });
+
+
+
+
+    
       });
-    // fiveDay();
+    
     
  }
 
@@ -122,14 +131,14 @@ function getApi() {
 
 //need to get daily numbers from oneday api and then input values for 5 day 
 
-function uvIndex (){
+// function uvIndex (){
 
-  var uvi = daily[0].uvi
+//   var uvi = daily[0].uvi
   
-  $("#uv-index").text(uvi)
+//   $("#uv-index").text(uvi)
   
 
-}
+// }
 
 
 
