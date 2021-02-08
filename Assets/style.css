@@ -36,7 +36,9 @@ i {
     right: 2px;
 }
 
-
+#forecast-weather {
+    color: white;
+}
 .card {
 
     padding-left: 10px;
@@ -45,12 +47,17 @@ i {
 }
 
 #forecast-cards {
+    
     display: flex;
     flex-direction: row;
-    justify-content: center/space-between;
+    justify-content: center space-between;
 }
 
-
+.card-forecast{
+    margin-right:5px;
+    background-color: rgb(1, 115, 168);
+    border: 1px solid lightgray;
+}
 
 ul {
     list-style-type: none;
