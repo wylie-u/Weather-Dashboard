@@ -13,7 +13,7 @@ $("#forecast-date3").text(date3);
 $("#forecast-date4").text(date4);
 $("#forecast-date5").text(date5);
 
-// const mainWeather = document.getElementById("#main-weather");
+const mainWeather = document.getElementById("#main-weather");
 
 
 
@@ -21,7 +21,7 @@ $("#search-button").on("click", getApi)
 
 function getApi() {
 
-    //  mainWeather.style.display = "block";
+     mainWeather.style.display = "block";
   
 
     var searchField = $("input").attr('id');
