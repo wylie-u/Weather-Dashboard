@@ -161,6 +161,11 @@ function userSearch(){
        
     }
     
+    var selectCity = "<li>" + city + "</li>"
     
+
+    if (selectCity === ""){
+      
+    }
    
 }
