@@ -34,7 +34,7 @@ form{
 
 }
 
-button {
+#search-button {
     width: 35px;
     height: 35px;
     background-color: rgb(53, 150, 206);

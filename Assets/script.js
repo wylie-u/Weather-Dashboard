@@ -153,19 +153,19 @@ function userSearch(){
     for (var i = 0; i < localStorage.length; i++) {
 
         var city = localStorage.getItem("user-input");
-    
+
         value = $("#city-list").addClass("list-group-item");
     
         value.append("<li>" + city + "</li>");
         
+
+        
        
     }
     
-    var selectCity = "<li>" + city + "</li>"
     
-
-    if (selectCity === ""){
-      
-    }
+    
+    
    
 }
+
