@@ -32,7 +32,7 @@ function getApi() {
 
     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + value + "&units=imperial&appid=1e9dda97d02056dc1ee084b9e12c91ed";
     
-    //console.log(requestUrl);
+    
 
     fetch(requestUrl)
       .then(function (response) {
@@ -48,7 +48,7 @@ function getApi() {
         var humidity = data.main.humidity + "%"
         var wind = data.wind.speed + " MPH"
         var weatherimg = 'https://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
-        console.log(weatherimg)
+        
         
         
 
@@ -79,7 +79,7 @@ function getApi() {
             .then((res) => res.json())
             //
             .then(function (data) {
-              console.log(data)
+              
               var uvi = data.daily[0].uvi;
     
               $('#uv-index').text(uvi);
