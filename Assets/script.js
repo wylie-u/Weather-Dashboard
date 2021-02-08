@@ -13,7 +13,7 @@ $("#forecast-date3").text(date3);
 $("#forecast-date4").text(date4);
 $("#forecast-date5").text(date5);
 
-const mainWeather = document.getElementById("#main-weather");
+const mainWeather = document.getElementById("main-weather");
 
 
 
