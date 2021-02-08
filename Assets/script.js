@@ -59,7 +59,8 @@ function getApi() {
         $("#wind-speed").text(wind)
         $("#current-img").attr('src', weatherimg);
 
-
+        // creating longitude and latitude variables
+        // these will then be used with the onecall api to then get the uv index
         var lat = data.coord.lat;
         var lon = data.coord.lon;
 
@@ -80,15 +81,21 @@ function getApi() {
             //
             .then(function (data) {
               
+              // uv index colors
               var uvi = data.daily[0].uvi;
     
               $('#uv-index').text(uvi);
 
                 if (uvi < 3) {
+
                     $('#uv-index').css("background-color", "green");
+
                   } else if (uvi >= 3 && uvi < 6) {
+
                     $('#uv-index').css("background-color", "#ffd300");
+
                   } else {
+
                     $('#uv-index').css("background-color", "red"); 
                   }
             
@@ -127,8 +134,6 @@ function getApi() {
                 var day5img = 'https://openweathermap.org/img/w/' + data.daily[4].weather[0].icon + '.png';
                 $("#icon5").attr('src', day5img);
                 
-                
-
 
             });
     
@@ -153,7 +158,9 @@ function userSearch(){
     
         value.append("<li>" + city + "</li>");
         
+       
     }
+    
     
    
 }

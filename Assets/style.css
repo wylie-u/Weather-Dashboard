@@ -28,6 +28,7 @@ p {
 
 
 form{
+
     justify-content: center;
     margin-bottom: 10px;
 
@@ -41,6 +42,9 @@ button {
     border: none;
 }
 
+ul {
+    cursor: pointer;
+}
 i {
     position: relative;
     right: 2px;
@@ -90,7 +94,7 @@ h2 {
 }
 
 h4 {
-    
+
     padding-bottom: 10px;
     
 }
