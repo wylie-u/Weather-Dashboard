@@ -22,11 +22,12 @@ This project is my first project which uses an API. I was challenged with operat
 2. visit https://openweathermap.org/
 3. visit https://openweathermap.org/forecast5
 4. visit https://openweathermap.org/api/one-call-api 
+5. visit http://colorcode.is/search?q=yellow
 
 ## Usage
 *  Main Page
 
-![Main Page](Assets/images/quiz.png)
+![Main Page](Assets/images/The-Weather-Outside-is-Weather.png)
 
 
 ## Credits

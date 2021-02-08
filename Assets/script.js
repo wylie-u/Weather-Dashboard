@@ -84,12 +84,12 @@ function getApi() {
     
               $('#uv-index').text(uvi);
 
-                if (uvi > 3) {
-                    $('#uv-index').css("color", "green");
+                if (uvi < 3) {
+                    $('#uv-index').css("background-color", "green");
                   } else if (uvi >= 3 && uvi < 6) {
-                    $('#uv-index').css("color", "yellow");
+                    $('#uv-index').css("background-color", "#ffd300");
                   } else {
-                    $('#uv-index').css("color", "red"); 
+                    $('#uv-index').css("background-color", "red"); 
                   }
             
                 // 5 day temps
